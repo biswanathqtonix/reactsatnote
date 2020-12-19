@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
-function App() {
+import Header from './Includes/Header'
+
+import Home from './Pages/Home'
+import Albums from './Pages/Albums'
+import AlbumView from './Pages/AlbumView'
+import Post from './Pages/Post'
+import PostViewDetails from './components/PostViewDetails'
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+      <Router>
+        <Header />
+        <div className="container mt-3">
+        <Switch>
 
-export default App;
+          <Route exact path="/" component={Home} />
+          <Route exact path="/albums" component={Albums} />
+          <Route exact path="/albums/:id" component={AlbumView} />
+          <Route exact path="/post" component={Post} />
+          <Route exact path="/post/:id" component={PostViewDetails} />
+    
+
+        </Switch>
+        </div>        
+      </Router>
+    </>
+  )
+}
